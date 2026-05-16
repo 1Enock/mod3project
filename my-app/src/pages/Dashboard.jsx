@@ -14,6 +14,10 @@ function Dashboard({ user }) {
     setExpenses((current) => [expense, ...current])
   }
 
+  const removeExpense = (expenseId) => {
+    setExpenses((current) => current.filter((item) => item.id !== expenseId))
+  }
+
   const handleLogout = async () => {
     try {
       await logout()
@@ -53,7 +57,7 @@ function Dashboard({ user }) {
       </div>
 
       <ExpenseForm onAdd={addExpense} />
-      <ExpenseList expenses={expenses} />
+      <ExpenseList expenses={expenses} onRemove={removeExpense} />
     </div>
   )
 }

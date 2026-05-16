@@ -218,9 +218,29 @@ button.secondary {
   border: 1px solid #e0e8f5;
 }
 
+.expense-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .expense-item strong {
   display: block;
   color: #172a47;
+}
+
+.delete-button {
+  border: 1px solid #e0e8f5;
+  background: #ffffff;
+  color: #ef4444;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background: #fef2f2;
 }
 
 .expense-item span {
