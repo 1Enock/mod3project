@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import ExpenseForm from '../components/Expenseform'
 import ExpenseList from '../components/ExpenseList'
 import { logout } from '../firebase'
+import CategoryPieChart from '../components/CategoryPieChart'
+import TrendLineChart from '../components/TrendLineChart'
 
 function Dashboard({ user }) {
   const [expenses, setExpenses] = useState([])
@@ -43,6 +45,11 @@ function Dashboard({ user }) {
           <span>Spending items</span>
           <strong>{expenses.length}</strong>
         </div>
+      </div>
+
+      <div className="charts-grid">
+        <CategoryPieChart expenses={expenses} />
+        <TrendLineChart expenses={expenses} />
       </div>
 
       <ExpenseForm onAdd={addExpense} />

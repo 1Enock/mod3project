@@ -239,3 +239,35 @@ button.secondary {
     grid-template-columns: 1fr;
   }
 }
+
+/* Charts layout */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.chart-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 10px 24px rgba(7, 26, 75, 0.06);
+  min-height: 220px;
+}
+
+.chart-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+}
+
+.chart-card p {
+  margin: 0;
+  color: #6b7a98;
+}
+
+@media (max-width: 880px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
