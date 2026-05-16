@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { signIn, signUp, signInWithGoogle } from '../firebase'
 
 function AuthPage({ onLogin }) {
@@ -7,6 +8,35 @@ function AuthPage({ onLogin }) {
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
+
+  const formatFirebaseError = (err, provider) => {
+    const code = err?.code || ''
+    if (code === 'auth/configuration-not-found') {
+      if (provider === 'google') {
+        return 'Google sign-in is not enabled for this Firebase project. Enable Google under Authentication → Sign-in method.'
+      }
+      return 'Email/password sign-in is not enabled for this Firebase project. Enable Email/Password under Authentication → Sign-in method.'
+    }
+    if (code === 'auth/user-not-found') {
+      return 'No account exists with that email. Please sign up first.'
+    }
+    if (code === 'auth/wrong-password') {
+      return 'Incorrect password. Please try again.'
+    }
+    if (code === 'auth/invalid-email') {
+      return 'The email address is not valid.'
+    }
+    if (code === 'auth/popup-closed-by-user') {
+      return 'Google sign-in popup was closed. Please try again.'
+    }
+    return err?.message || 'An unexpected authentication error occurred.'
+  }
+
+  const handleLoginSuccess = (user) => {
+    onLogin && onLogin(user)
+    navigate('/dashboard')
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -16,9 +46,9 @@ function AuthPage({ onLogin }) {
       let res
       if (mode === 'signin') res = await signIn(email, password)
       else res = await signUp(email, password)
-      onLogin && onLogin(res.user)
+      handleLoginSuccess(res.user)
     } catch (err) {
-      setError(err.message)
+      setError(formatFirebaseError(err, mode))
     } finally {
       setLoading(false)
     }
@@ -29,9 +59,9 @@ function AuthPage({ onLogin }) {
     setLoading(true)
     try {
       const res = await signInWithGoogle()
-      onLogin && onLogin(res.user)
+      handleLoginSuccess(res.user)
     } catch (err) {
-      setError(err.message)
+      setError(formatFirebaseError(err, 'google'))
     } finally {
       setLoading(false)
     }
