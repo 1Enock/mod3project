@@ -51,6 +51,15 @@ function Expenseform({ onAdd }) {
           value={form.amount}
           onChange={handleChange}
         />
+        <label htmlFor="category">Category </label>
+        <input
+          id="category"
+          name="category"
+          type="text"
+          value={form.category}
+          onChange={handleChange}
+          placeholder="Food, transport, entertainment..."
+        />
         <button type="submit" className="primary">Add expense</button>
       </form>
     </div>
