@@ -23,7 +23,6 @@ function App() {
             <div className="brand-flag"></div>
             <div>
               <h1>FinPlan</h1>
-              <p>Simple spending tracker</p>
             </div>
           </div>
         </header>
