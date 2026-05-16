@@ -1,12 +1,10 @@
 import { useState } from 'react'
 import ExpenseForm from '../components/Expenseform'
 import ExpenseList from '../components/ExpenseList'
+import { logout } from '../firebase'
 
-function Dashboard({ user, onLogout }) {
-  const [expenses, setExpenses] = useState([
-    { id: 1, title: 'Morning coffee', amount: 3.5, category: 'Food' },
-    { id: 2, title: 'Transit pass', amount: 12.0, category: 'Transport' },
-  ])
+function Dashboard({ user }) {
+  const [expenses, setExpenses] = useState([])
 
   const addExpense = (expense) => {
     setExpenses((current) => [expense, ...current])
@@ -18,10 +16,17 @@ function Dashboard({ user, onLogout }) {
     <div className="page-card">
       <div className="dashboard-top">
         <div>
-          <h2>Hi, {user}</h2>
-          <p>Track your spending in a clean orange and blue dashboard.</p>
+          <h2>Hi, {user?.displayName || user?.email}</h2>
+          <p>Track your spending.</p>
         </div>
-        <button className="secondary" onClick={onLogout}>Logout</button>
+        <button
+          className="secondary"
+          onClick={() => {
+            logout().catch(() => {})
+          }}
+        >
+          Logout
+        </button>
       </div>
 
       <div className="summary-panel">

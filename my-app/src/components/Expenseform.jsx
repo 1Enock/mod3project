@@ -47,23 +47,10 @@ function Expenseform({ onAdd }) {
         <input
           id="amount"
           name="amount"
-          type="number"
-          step="0.01"
+          type="currency"
           value={form.amount}
           onChange={handleChange}
-          placeholder="0.00"
         />
-
-        <label htmlFor="category">Category</label>
-        <input
-          id="category"
-          name="category"
-          type="text"
-          value={form.category}
-          onChange={handleChange}
-          placeholder="Food, transport, bills..."
-        />
-
         <button type="submit" className="primary">Add expense</button>
       </form>
     </div>

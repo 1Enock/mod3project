@@ -1,10 +1,18 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import AuthPage from './pages/AuthPage'
 import Dashboard from './pages/Dashboard'
+import { subscribeAuth } from './firebase'
 
 function App() {
   const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const unsub = subscribeAuth((fbUser) => {
+      setUser(fbUser)
+    })
+    return unsub
+  }, [])
 
   return (
     <div className="app-shell">
@@ -20,7 +28,7 @@ function App() {
 
       <main className="app-main">
         {user ? (
-          <Dashboard user={user} onLogout={() => setUser(null)} />
+          <Dashboard user={user} />
         ) : (
           <AuthPage onLogin={setUser} />
         )}
