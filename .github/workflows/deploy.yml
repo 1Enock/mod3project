@@ -78,12 +78,11 @@ jobs:
           name: build-20.x
           path: my-app/dist/
 
-      - name: Deploy to staging environment
+      - name: Deploy to staging environment (Vercel Preview)
         env:
-          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
-          echo "Deploying to staging environment..."
-          echo "Build artifacts are ready for deployment"
+          echo "Deploying to Vercel (preview) from my-app..."
           echo "Version: ${{ github.sha }}"
           npm run deploy:staging --prefix my-app
 
@@ -107,12 +106,11 @@ jobs:
           name: build-20.x
           path: my-app/dist/
 
-      - name: Deploy to production environment
+      - name: Deploy to production environment (Vercel Production)
         env:
-          PROD_DEPLOY_TOKEN: ${{ secrets.PROD_DEPLOY_TOKEN }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
-          echo "Deploying to production environment..."
-          echo "Build artifacts are ready for production"
+          echo "Deploying to Vercel (production) from my-app..."
           echo "Version: ${{ github.sha }}"
           npm run deploy:production --prefix my-app
 

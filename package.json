@@ -11,7 +11,9 @@
     "test": "npm run test --prefix my-app",
     "lint": "npm run lint --prefix my-app",
     "semantic-release": "semantic-release",
-    "release": "semantic-release"
+    "release": "semantic-release",
+    "vercel-build": "npm run build",
+    "postinstall": "npm install --prefix my-app"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",

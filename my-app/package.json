@@ -9,8 +9,8 @@
     "lint": "eslint .",
     "test": "jest --coverage --passWithNoTests",
     "preview": "vite preview",
-    "deploy:staging": "echo \"No staging deploy configured. Edit 'my-app/package.json' to add your staging deploy command.\" && exit 0",
-    "deploy:production": "echo \"No production deploy configured. Edit 'my-app/package.json' to add your production deploy command.\" && exit 0"
+    "deploy:staging": "npx vercel --confirm --token $VERCEL_TOKEN",
+    "deploy:production": "npx vercel --confirm --prod --token $VERCEL_TOKEN"
   },
   "dependencies": {
     "firebase": "^12.13.0",
