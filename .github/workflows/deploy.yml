@@ -79,12 +79,13 @@ jobs:
           path: my-app/dist/
 
       - name: Deploy to staging environment
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
         run: |
           echo "Deploying to staging environment..."
           echo "Build artifacts are ready for deployment"
           echo "Version: ${{ github.sha }}"
-        # Add your actual deployment command here
-        # Example: npm run deploy:staging
+          npm run deploy:staging --prefix my-app
 
       - name: Notify deployment
         if: success()
@@ -107,12 +108,13 @@ jobs:
           path: my-app/dist/
 
       - name: Deploy to production environment
+        env:
+          PROD_DEPLOY_TOKEN: ${{ secrets.PROD_DEPLOY_TOKEN }}
         run: |
           echo "Deploying to production environment..."
           echo "Build artifacts are ready for production"
           echo "Version: ${{ github.sha }}"
-        # Add your actual deployment command here
-        # Example: npm run deploy:production
+          npm run deploy:production --prefix my-app
 
       - name: Notify deployment
         if: success()
