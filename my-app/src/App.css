@@ -42,13 +42,21 @@ input {
   border-radius: 20px;
   background: rgba(255, 159, 67, 0.12);
   border: 1px solid rgba(255, 159, 67, 0.25);
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.3s ease;
+}
+
+.brand-block:hover {
+  background: rgba(255, 159, 67, 0.2);
 }
 
 .brand-flag {
   width: 16px;
   height: 48px;
   border-radius: 12px;
-  background: linear-gradient(180deg, #ff8a00 0%, #0066d6 100%);
+  background: blue;
 }
 
 .brand-block h1 {

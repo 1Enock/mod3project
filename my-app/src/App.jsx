@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom'
 import './App.css'
 import AuthPage from './pages/AuthPage'
 import Dashboard from './pages/Dashboard'
@@ -20,12 +20,12 @@ function App() {
     <BrowserRouter>
       <div className="app-shell">
         <header className="app-header">
-          <div className="brand-block">
+          <Link to="/" className="brand-block">
             <div className="brand-flag"></div>
             <div>
               <h1>FinPlan</h1>
             </div>
-          </div>
+          </Link>
         </header>
 
         <main className="app-main">
