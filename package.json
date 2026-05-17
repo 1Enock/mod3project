@@ -1,7 +1,47 @@
 {
+  "name": "mod3-expense-tracker",
+  "version": "1.0.0",
+  "description": "A modern expense tracking application built with React and Firebase",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm run dev --prefix my-app",
+    "build": "npm run build --prefix my-app",
+    "preview": "npm run preview --prefix my-app",
+    "test": "npm run test --prefix my-app",
+    "lint": "npm run lint --prefix my-app",
+    "semantic-release": "semantic-release",
+    "release": "semantic-release"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
     "firebase": "^12.13.0",
     "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^11.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^9.2.6",
+    "@semantic-release/npm": "^12.0.0",
+    "@semantic-release/release-notes-generator": "^12.1.0",
+    "semantic-release": "^22.0.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/mod3project.git"
+  },
+  "keywords": [
+    "expense",
+    "tracker",
+    "react",
+    "vite",
+    "firebase"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }

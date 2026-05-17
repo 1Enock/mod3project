@@ -35,6 +35,11 @@ This project requires no special installation to view the built app — it can b
 
 The project aims to simplify voting workflows by allowing users to create polls, vote, and see live vote percentages without manual tallying.
 
+## Deployment & CI/CD
+
+This project uses **GitHub Actions** for automated testing, building, and deployment with **Semantic Versioning**.
+
+
 ## Contributors
 
 - Enock Kibet

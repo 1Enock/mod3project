@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+// Husky commit-msg hook to validate commit messages
+
+const fs = require('fs');
+const path = require('path');
+
+// Read commit message
+const commitMsgFile = process.argv[2];
+const commitMessage = fs.readFileSync(commitMsgFile, 'utf-8').trim();
+
+// Conventional commit pattern
+const commitPattern = /^(feat|fix|docs|style|refactor|perf|test|chore|ci|revert|build)(\(.+\))?!?: .{1,100}($|\n)/;
+
+// Check if it matches the pattern
+if (!commitPattern.test(commitMessage)) {
+  console.error('❌ Invalid commit message format!\n');
+  console.error('Expected format: <type>(<scope>): <subject>\n');
+  console.error('Examples:');
+  console.error('  feat(auth): add login functionality');
+  console.error('  fix(dashboard): resolve chart rendering issue');
+  console.error('  docs: update README\n');
+  console.error('Allowed types: feat, fix, docs, style, refactor, perf, test, chore, ci, revert, build\n');
+  process.exit(1);
+}
+
+console.log('✅ Commit message is valid');
+process.exit(0);
