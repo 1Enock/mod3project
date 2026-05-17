@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">63.63% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>7/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">11.11% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>1/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">63.63% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>7/11</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -112,11 +112,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -126,16 +124,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -144,7 +144,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -157,9 +157,9 @@
 import { Pie } from 'react-chartjs-2'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 &nbsp;
-<span class="cstat-no" title="statement not covered" >ChartJS.register(ArcElement, Tooltip, Legend)</span>
+ChartJS.register(ArcElement, Tooltip, Legend)
 &nbsp;
-const COLORS = <span class="cstat-no" title="statement not covered" >[</span>
+const COLORS = [
   '#4f46e5',
   '#f97316',
   '#06b6d4',
@@ -170,15 +170,15 @@ const COLORS = <span class="cstat-no" title="statement not covered" >[</span>
   '#7c3aed',
 ]
 &nbsp;
-function <span class="fstat-no" title="function not covered" >CategoryPieChart(</span>{ expenses = <span class="branch-0 cbranch-no" title="branch not covered" >[] </span>}) {
-  const totals = <span class="cstat-no" title="statement not covered" >{}</span>
-<span class="cstat-no" title="statement not covered" >  expenses.forEach(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
+function CategoryPieChart({ expenses = <span class="branch-0 cbranch-no" title="branch not covered" >[] </span>}) {
+  const totals = {}
+  expenses.forEach(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
     const cat = <span class="cstat-no" title="statement not covered" >e.category || 'Other'</span>
 <span class="cstat-no" title="statement not covered" >    totals[cat] = (totals[cat] || 0) + Number(e.amount || 0)</span>
   })
 &nbsp;
-  const labels = <span class="cstat-no" title="statement not covered" >Object.keys(totals)</span>
-  const data = <span class="cstat-no" title="statement not covered" >{</span>
+  const labels = Object.keys(totals)
+  const data = {
     labels,
     datasets: [
       {
@@ -189,10 +189,10 @@ function <span class="fstat-no" title="function not covered" >CategoryPieChart(<
     ],
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;div className="chart-card"&gt;
       &lt;h3&gt;Spending by Category&lt;/h3&gt;
-      {labels.length ? &lt;Pie data={data} /&gt; : &lt;p&gt;No expenses yet.&lt;/p&gt;}
+      {labels.length ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;Pie data={data} /&gt; </span>: &lt;p&gt;No expenses yet.&lt;/p&gt;}
     &lt;/div&gt;
   )
 }
@@ -205,7 +205,7 @@ export default CategoryPieChart
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-05-17T09:15:57.043Z
+                at 2026-05-17T11:39:13.364Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">54.54% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>6/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">11.11% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>1/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>1/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">54.54% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>6/11</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -122,33 +122,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -169,19 +169,19 @@ import {
   Legend,
 } from 'chart.js'
 &nbsp;
-<span class="cstat-no" title="statement not covered" >ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend)</span>
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend)
 &nbsp;
-function <span class="fstat-no" title="function not covered" >TrendLineChart(</span>{ expenses = <span class="branch-0 cbranch-no" title="branch not covered" >[] </span>}) {
-  const totalsByDate = <span class="cstat-no" title="statement not covered" >{}</span>
-<span class="cstat-no" title="statement not covered" >  expenses.forEach(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
+function TrendLineChart({ expenses = <span class="branch-0 cbranch-no" title="branch not covered" >[] </span>}) {
+  const totalsByDate = {}
+  expenses.forEach(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
     const ts = <span class="cstat-no" title="statement not covered" >Number(e.id) || Date.now()</span>
     const d = <span class="cstat-no" title="statement not covered" >new Date(ts)</span>
     const key = <span class="cstat-no" title="statement not covered" >d.toISOString().slice(0, 10)</span>
 <span class="cstat-no" title="statement not covered" >    totalsByDate[key] = (totalsByDate[key] || 0) + Number(e.amount || 0)</span>
   })
 &nbsp;
-  const labels = <span class="cstat-no" title="statement not covered" >Object.keys(totalsByDate).sort()</span>
-  const data = <span class="cstat-no" title="statement not covered" >{</span>
+  const labels = Object.keys(totalsByDate).sort()
+  const data = {
     labels,
     datasets: [
       {
@@ -195,10 +195,10 @@ function <span class="fstat-no" title="function not covered" >TrendLineChart(</s
     ],
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;div className="chart-card"&gt;
       &lt;h3&gt;Spending Over Time&lt;/h3&gt;
-      {labels.length ? &lt;Line data={data} /&gt; : &lt;p&gt;No expenses yet.&lt;/p&gt;}
+      {labels.length ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;Line data={data} /&gt; </span>: &lt;p&gt;No expenses yet.&lt;/p&gt;}
     &lt;/div&gt;
   )
 }
@@ -211,7 +211,7 @@ export default TrendLineChart
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-05-17T09:15:57.043Z
+                at 2026-05-17T11:39:13.364Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
