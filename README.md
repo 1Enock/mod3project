@@ -16,18 +16,18 @@ This project requires no special installation to view the built app — it can b
 
 1. Clone the repository:
 
-	'git clone https://github.com/1Enock/mod3project'
+	`git clone https://github.com/1Enock/mod3project`
 
 2. Open the project folder.
 
 3. Navigate into the project directory and install dependencies:
 
-	'cd my-app'
-	'npm install'
+	`cd my-app`
+	`npm install`
 
 4. Start the dev server:
 
-	'npm run dev'
+	`npm run dev`
 
 5. Open the localhost link shown in the terminal to view the web application (usually http://localhost:5173).
 
