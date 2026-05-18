@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { collection, addDoc, query, where, onSnapshot, deleteDoc, doc, serverTimestamp } from 'firebase/firestore'
 import ExpenseForm from '../components/Expenseform'
 import ExpenseList from '../components/ExpenseList'
-import { logout, db } from '../firebase'
+import { logout } from '../firebase'
 import CategoryPieChart from '../components/CategoryPieChart'
 import TrendLineChart from '../components/TrendLineChart'
 
@@ -11,47 +10,36 @@ function Dashboard({ user }) {
   const [expenses, setExpenses] = useState([])
   const navigate = useNavigate()
 
-  // Load expenses from Firebase on mount
+  // Load expenses from localStorage on mount
   useEffect(() => {
     if (!user) return
 
-    const q = query(
-      collection(db, 'expenses'),
-      where('userId', '==', user.uid)
-    )
-
-    const unsub = onSnapshot(q, (snapshot) => {
-      const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-      console.log('Firestore snapshot received:', items)
-      setExpenses(items)
-    }, (err) => {
-      console.error('Error listening to expenses:', err)
-    })
-
-    return unsub
+    const stored = localStorage.getItem(`expenses_${user.uid}`)
+    const items = stored ? JSON.parse(stored) : []
+    setExpenses(items)
   }, [user])
 
-  const addExpense = async (expense) => {
+  const addExpense = (expense) => {
     if (!user || !user.uid) {
       console.error('Cannot add expense: user not authenticated')
       return
     }
 
     try {
-      const docRef = await addDoc(collection(db, 'expenses'), {
-        ...expense,
-        userId: user.uid,
-        createdAt: serverTimestamp()
-      })
-      console.log('Expense added:', docRef.id)
+      const updated = [...expenses, expense]
+      setExpenses(updated)
+      localStorage.setItem(`expenses_${user.uid}`, JSON.stringify(updated))
+      console.log('Expense added:', expense.id)
     } catch (error) {
       console.error('Error adding expense:', error)
     }
   }
 
-  const removeExpense = async (expenseId) => {
+  const removeExpense = (expenseId) => {
     try {
-      await deleteDoc(doc(db, 'expenses', expenseId))
+      const updated = expenses.filter(item => item.id !== expenseId)
+      setExpenses(updated)
+      localStorage.setItem(`expenses_${user.uid}`, JSON.stringify(updated))
       console.log('Expense removed:', expenseId)
     } catch (error) {
       console.error('Error removing expense:', error)
