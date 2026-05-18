@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { collection, addDoc, query, where, onSnapshot, deleteDoc, doc } from 'firebase/firestore'
+import { collection, addDoc, query, where, onSnapshot, deleteDoc, doc, serverTimestamp } from 'firebase/firestore'
 import ExpenseForm from '../components/Expenseform'
 import ExpenseList from '../components/ExpenseList'
 import { logout, db } from '../firebase'
@@ -21,19 +21,29 @@ function Dashboard({ user }) {
     )
 
     const unsub = onSnapshot(q, (snapshot) => {
-      setExpenses(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
+      const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+      console.log('Firestore snapshot received:', items)
+      setExpenses(items)
+    }, (err) => {
+      console.error('Error listening to expenses:', err)
     })
 
     return unsub
   }, [user])
 
   const addExpense = async (expense) => {
+    if (!user || !user.uid) {
+      console.error('Cannot add expense: user not authenticated')
+      return
+    }
+
     try {
-      await addDoc(collection(db, 'expenses'), {
+      const docRef = await addDoc(collection(db, 'expenses'), {
         ...expense,
         userId: user.uid,
-        createdAt: new Date()
+        createdAt: serverTimestamp()
       })
+      console.log('Expense added:', docRef.id)
     } catch (error) {
       console.error('Error adding expense:', error)
     }
@@ -42,6 +52,7 @@ function Dashboard({ user }) {
   const removeExpense = async (expenseId) => {
     try {
       await deleteDoc(doc(db, 'expenses', expenseId))
+      console.log('Expense removed:', expenseId)
     } catch (error) {
       console.error('Error removing expense:', error)
     }

@@ -47,7 +47,9 @@ function Expenseform({ onAdd }) {
         <input
           id="amount"
           name="amount"
-          type="currency"
+          type="number"
+          step="0.01"
+          min="0"
           value={form.amount}
           onChange={handleChange}
         />
