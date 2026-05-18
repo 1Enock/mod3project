@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { collection, addDoc, query, where, onSnapshot, deleteDoc, doc } from 'firebase/firestore'
 import ExpenseForm from '../components/Expenseform'
 import ExpenseList from '../components/ExpenseList'
-import { logout } from '../firebase'
+import { logout, db } from '../firebase'
 import CategoryPieChart from '../components/CategoryPieChart'
 import TrendLineChart from '../components/TrendLineChart'
 
@@ -10,12 +11,40 @@ function Dashboard({ user }) {
   const [expenses, setExpenses] = useState([])
   const navigate = useNavigate()
 
-  const addExpense = (expense) => {
-    setExpenses((current) => [expense, ...current])
+  // Load expenses from Firebase on mount
+  useEffect(() => {
+    if (!user) return
+
+    const q = query(
+      collection(db, 'expenses'),
+      where('userId', '==', user.uid)
+    )
+
+    const unsub = onSnapshot(q, (snapshot) => {
+      setExpenses(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
+    })
+
+    return unsub
+  }, [user])
+
+  const addExpense = async (expense) => {
+    try {
+      await addDoc(collection(db, 'expenses'), {
+        ...expense,
+        userId: user.uid,
+        createdAt: new Date()
+      })
+    } catch (error) {
+      console.error('Error adding expense:', error)
+    }
   }
 
-  const removeExpense = (expenseId) => {
-    setExpenses((current) => current.filter((item) => item.id !== expenseId))
+  const removeExpense = async (expenseId) => {
+    try {
+      await deleteDoc(doc(db, 'expenses', expenseId))
+    } catch (error) {
+      console.error('Error removing expense:', error)
+    }
   }
 
   const handleLogout = async () => {
