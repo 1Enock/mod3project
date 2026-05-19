@@ -1,4 +1,4 @@
-# group4react-app
+# mod3project
 
 ## Project overview
 
